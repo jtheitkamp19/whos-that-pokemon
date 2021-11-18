@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/m_clDefault"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/m_btnClearData"
+            style="@style/MenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:onClick="onClearDataClickHandler"
+            android:text="@string/clear_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/m_btnPullData"
+            style="@style/MenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="onPullDataClickHandler"
+            android:text="@string/pull_data"
+            app:layout_constraintEnd_toEndOf="@id/m_btnClearData"
+            app:layout_constraintStart_toStartOf="@id/m_btnClearData"
+            app:layout_constraintTop_toBottomOf="@id/m_btnClearData" />
+
+        <Button
+            android:id="@+id/m_btnResetStats"
+            style="@style/MenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="onResetStatsClickHandler"
+            android:text="@string/reset_stats"
+            app:layout_constraintEnd_toEndOf="@id/m_btnClearData"
+            app:layout_constraintStart_toStartOf="@id/m_btnClearData"
+            app:layout_constraintTop_toBottomOf="@id/m_btnPullData" />
+
+        <Button
+            android:id="@+id/m_btnHistory"
+            style="@style/MenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="onVersionHistoryClickHandler"
+            android:text="@string/version_history"
+            app:layout_constraintEnd_toEndOf="@id/m_btnClearData"
+            app:layout_constraintStart_toStartOf="@id/m_btnPullData"
+            app:layout_constraintTop_toBottomOf="@id/m_btnResetStats" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/m_clOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/m_tvOverlay"
+            style="@style/Overlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/m_tvPleaseWait"
+            style="@style/DefaultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/bottom_margin"
+            android:text="@string/please_wait"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/m_tvProgress"
+            style="@style/DefaultText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/progress_bar"
+            app:layout_constraintEnd_toEndOf="@id/m_tvPleaseWait"
+            app:layout_constraintStart_toStartOf="@id/m_tvPleaseWait"
+            app:layout_constraintTop_toTopOf="@id/m_tvPleaseWait" />
+
+        <ProgressBar
+            android:id="@+id/m_pbProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:max="7"
+            android:progressTint="@color/crystal"
+            app:layout_constraintEnd_toEndOf="@id/m_tvProgress"
+            app:layout_constraintStart_toStartOf="@id/m_tvProgress"
+            app:layout_constraintTop_toBottomOf="@id/m_tvProgress" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

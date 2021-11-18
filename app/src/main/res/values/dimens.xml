@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_margin">60dp</dimen>
+    <dimen name="small_margin">4dp</dimen>
+    <integer name="max_base_stat">255</integer>
+    <dimen name="space_margin">20dp</dimen>
+</resources>

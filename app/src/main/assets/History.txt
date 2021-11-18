@@ -1,0 +1,16 @@
+Version 1.1.0
+    -Adds Pokemon Lookup
+    -Adds Verification Dialogs on Settings Page
+    -Adds Generation Specific Stats
+    -Adds Average Time and Win Percentage to Stats
+
+Version 1.0.0
+    -Initial Release
+    -Replaces Pokemon Number with Pokemon Color in game
+    -Adds Pokemon Number back onto game page
+    -Changes color for Guesses within the Pokemon's family
+    -Fixes issue with Hard mode being Brutal mode
+    -Updates Time in Game to max in hours
+    -Adds most played pokemon to stats page
+    -Adds games played with most played pokemon
+    -Makes Version History page more friendly

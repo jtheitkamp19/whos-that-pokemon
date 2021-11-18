@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/m_conout"
+    style="@style/Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/m_clDefault"
+        style="@style/Container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/m_btnPlay"
+            style="@style/MenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:onClick="onPlayGameClickHandler"
+            android:text="@string/play_whos_that_pokemon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/m_btnStats"
+            style="@style/MenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="onStatsClickHandler"
+            android:text="@string/stats"
+            app:layout_constraintEnd_toEndOf="@id/m_btnPlay"
+            app:layout_constraintStart_toStartOf="@id/m_btnPlay"
+            app:layout_constraintTop_toBottomOf="@id/m_btnPlay" />
+
+        <Button
+            android:id="@+id/m_btnSettings"
+            style="@style/MenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="onSettingsClickHandler"
+            android:text="@string/settings"
+            app:layout_constraintEnd_toEndOf="@id/m_btnPlay"
+            app:layout_constraintStart_toStartOf="@id/m_btnPlay"
+            app:layout_constraintTop_toBottomOf="@id/m_btnStats" />
+
+        <Button
+            android:id="@+id/m_btnPokemonLookup"
+            style="@style/MenuButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="onPokemonLookupClickHandler"
+            android:text="@string/pokemon_lookup"
+            app:layout_constraintEnd_toEndOf="@id/m_btnPlay"
+            app:layout_constraintStart_toStartOf="@id/m_btnPlay"
+            app:layout_constraintTop_toBottomOf="@id/m_btnSettings" />
+
+        <TextView
+            android:id="@+id/m_tvVersion"
+            style="@style/DefaultText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/m_clOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/clear_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/m_overlayBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/clear_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/m_tvOverlay"
+            style="@style/DefaultText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/bottom_margin"
+            android:text="@string/please_wait"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/m_tvProgress"
+            style="@style/DefaultText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/progress_bar"
+            app:layout_constraintEnd_toEndOf="@id/m_tvOverlay"
+            app:layout_constraintStart_toStartOf="@id/m_tvOverlay"
+            app:layout_constraintTop_toBottomOf="@id/m_tvOverlay" />
+
+        <ProgressBar
+            android:id="@+id/m_pbProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bottom_margin"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/bottom_margin"
+            android:max="7"
+            android:progress="0"
+            android:progressTint="@color/crystal"
+            app:layout_constraintEnd_toEndOf="@id/m_tvProgress"
+            app:layout_constraintStart_toStartOf="@id/m_tvProgress"
+            app:layout_constraintTop_toBottomOf="@id/m_tvProgress" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Stats">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/m_tlGeneration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ruby"
+        app:layout_constraintEnd_toEndOf="@id/m_tlStats"
+        app:layout_constraintStart_toStartOf="@id/m_tlStats"
+        app:layout_constraintTop_toBottomOf="@id/m_tlStats"
+        app:tabIndicatorColor="@color/yellow"
+        app:tabMode="scrollable"
+        app:tabTextColor="@color/gold">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/m_tlStats"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/emerald"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="@color/pearl"
+        app:tabSelectedTextColor="@color/crystal"
+        app:tabTextColor="@color/diamond">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/easy" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/intermediate" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hard" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/brutal" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <ScrollView
+        style="@style/Container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/m_tlGeneration">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/m_tvTotalGuesses"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/m_tvValidGuesses"
+                app:layout_constraintTop_toTopOf="@id/totalGuessesLabel" />
+
+            <TextView
+                android:id="@+id/m_tvGamesWon"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/m_tvLeastGuesses"
+                app:layout_constraintTop_toTopOf="@id/gamesWonLabel" />
+
+            <TextView
+                android:id="@+id/validGuessesLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/valid_guesses"
+                app:layout_constraintEnd_toEndOf="@id/leastGuessesLabel"
+                app:layout_constraintTop_toBottomOf="@id/mostGuessesLabel" />
+
+            <TextView
+                android:id="@+id/m_tvValidGuesses"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/m_tvLeastGuesses"
+                app:layout_constraintTop_toTopOf="@id/validGuessesLabel" />
+
+            <TextView
+                android:id="@+id/m_tvTimeInGame"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/m_tvLeastGuesses"
+                app:layout_constraintTop_toTopOf="@id/timeInGameLabel" />
+
+            <TextView
+                android:id="@+id/m_tvGamesPlayed"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/m_tvLeastGuesses"
+                app:layout_constraintTop_toTopOf="@id/gamesPlayedLabel" />
+
+            <TextView
+                android:id="@+id/m_tvMostGuesses"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/m_tvLeastGuesses"
+                app:layout_constraintTop_toTopOf="@id/mostGuessesLabel" />
+
+            <TextView
+                android:id="@+id/gamesPlayedLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/games_played"
+                app:layout_constraintEnd_toEndOf="@id/leastGuessesLabel"
+                app:layout_constraintTop_toBottomOf="@id/gamesWonLabel" />
+
+            <TextView
+                android:id="@+id/totalGuessesLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/total_guesses"
+                app:layout_constraintEnd_toEndOf="@id/leastGuessesLabel"
+                app:layout_constraintTop_toBottomOf="@id/validGuessesLabel" />
+
+            <TextView
+                android:id="@+id/timeInGameLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/time_in_game"
+                app:layout_constraintEnd_toEndOf="@id/gamesPlayedLabel"
+                app:layout_constraintTop_toBottomOf="@id/gamesPlayedLabel" />
+
+            <TextView
+                android:id="@+id/leastGuessesLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/least_guesses"
+                app:layout_constraintEnd_toEndOf="@id/mostPlayedLabel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/gamesWonLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/games_won"
+                app:layout_constraintEnd_toEndOf="@id/leastGuessesLabel"
+                app:layout_constraintTop_toBottomOf="@id/totalGuessesLabel" />
+
+            <TextView
+                android:id="@+id/mostGuessesLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/most_guesses"
+                app:layout_constraintEnd_toEndOf="@id/leastGuessesLabel"
+                app:layout_constraintTop_toBottomOf="@id/leastGuessesLabel" />
+
+            <TextView
+                android:id="@+id/m_tvLeastGuesses"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/leastGuessesLabel"
+                app:layout_constraintTop_toTopOf="@id/leastGuessesLabel" />
+
+            <TextView
+                android:id="@+id/mostPlayedLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="8dp"
+                android:text="@string/most_played"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/timeInGameLabel" />
+
+            <TextView
+                android:id="@+id/m_tvMostPlayed"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/mostPlayedLabel"
+                app:layout_constraintStart_toStartOf="@id/m_tvLeastGuesses"
+                app:layout_constraintTop_toTopOf="@id/mostPlayedLabel" />
+
+            <TextView
+                android:id="@+id/averageTimeLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/average_game_time"
+                app:layout_constraintEnd_toEndOf="@id/mostPlayedLabel"
+                app:layout_constraintTop_toBottomOf="@id/mostPlayedLabel" />
+
+            <TextView
+                android:id="@+id/m_tvAverageTime"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/m_tvLeastGuesses"
+                app:layout_constraintTop_toTopOf="@id/averageTimeLabel" />
+
+            <TextView
+                android:id="@+id/winPercentageLabel"
+                style="@style/StatHeaderLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/win_percentage"
+                app:layout_constraintEnd_toEndOf="@id/mostPlayedLabel"
+                app:layout_constraintTop_toBottomOf="@id/averageTimeLabel" />
+
+            <TextView
+                android:id="@+id/m_tvWinPercentage"
+                style="@style/StatDataLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/m_tvLeastGuesses"
+                app:layout_constraintTop_toTopOf="@id/winPercentageLabel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:context=".GameActivity">
+
+    <TextView
+        android:id="@+id/speedLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/speed"
+        app:layout_constraintEnd_toEndOf="@id/defenseLabel"
+        app:layout_constraintTop_toBottomOf="@id/spDefLabel" />
+
+    <ProgressBar
+        android:id="@+id/m_pbSpeed"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:max="@integer/max_base_stat"
+        android:progressTint="@color/ruby"
+        app:layout_constraintBottom_toBottomOf="@id/speedLabel"
+        app:layout_constraintEnd_toEndOf="@id/m_pbHp"
+        app:layout_constraintStart_toEndOf="@id/speedLabel"
+        app:layout_constraintTop_toTopOf="@id/speedLabel" />
+
+    <TextView
+        android:id="@+id/m_tvSpeed"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/speedLabel"
+        app:layout_constraintStart_toEndOf="@id/m_pbSpeed"
+        app:layout_constraintTop_toTopOf="@id/m_pbSpeed" />
+
+    <ProgressBar
+        android:id="@+id/m_pbSpDef"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:max="@integer/max_base_stat"
+        android:progressTint="@color/emerald"
+        app:layout_constraintBottom_toBottomOf="@id/spDefLabel"
+        app:layout_constraintEnd_toEndOf="@id/m_pbHp"
+        app:layout_constraintStart_toEndOf="@id/spDefLabel"
+        app:layout_constraintTop_toTopOf="@id/spDefLabel" />
+
+    <TextView
+        android:id="@+id/m_tvSpDef"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/spDefLabel"
+        app:layout_constraintStart_toEndOf="@id/m_pbSpDef"
+        app:layout_constraintTop_toTopOf="@id/m_pbSpDef" />
+
+    <TextView
+        android:id="@+id/spDefLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/sp_def"
+        app:layout_constraintEnd_toEndOf="@id/defenseLabel"
+        app:layout_constraintTop_toBottomOf="@id/spAtkLabel" />
+
+    <TextView
+        android:id="@+id/m_tvSpAtk"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/spAtkLabel"
+        app:layout_constraintStart_toEndOf="@id/m_pbSpAtk"
+        app:layout_constraintTop_toTopOf="@id/m_pbSpAtk" />
+
+    <ProgressBar
+        android:id="@+id/m_pbSpAtk"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:max="@integer/max_base_stat"
+        android:progressTint="@color/sapphire"
+        app:layout_constraintBottom_toBottomOf="@id/spAtkLabel"
+        app:layout_constraintEnd_toEndOf="@id/m_pbHp"
+        app:layout_constraintStart_toEndOf="@id/spAtkLabel"
+        app:layout_constraintTop_toTopOf="@id/spAtkLabel" />
+
+    <TextView
+        android:id="@+id/spAtkLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/sp_atk"
+        app:layout_constraintEnd_toEndOf="@id/defenseLabel"
+        app:layout_constraintTop_toBottomOf="@id/defenseLabel" />
+
+    <TextView
+        android:id="@+id/m_tvDef"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/defenseLabel"
+        app:layout_constraintStart_toEndOf="@id/m_pbDef"
+        app:layout_constraintTop_toTopOf="@id/m_pbDef" />
+
+    <ProgressBar
+        android:id="@+id/m_pbDef"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:max="@integer/max_base_stat"
+        android:progressTint="@color/yellow"
+        app:layout_constraintBottom_toBottomOf="@id/defenseLabel"
+        app:layout_constraintEnd_toEndOf="@id/m_pbHp"
+        app:layout_constraintStart_toEndOf="@id/defenseLabel"
+        app:layout_constraintTop_toTopOf="@id/defenseLabel" />
+
+    <TextView
+        android:id="@+id/defenseLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/defense"
+        app:layout_constraintStart_toEndOf="@id/evoNumLabel"
+        app:layout_constraintTop_toBottomOf="@id/attackLabel" />
+
+    <TextView
+        android:id="@+id/m_tvAtk"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/attackLabel"
+        app:layout_constraintStart_toEndOf="@id/m_pbAtk"
+        app:layout_constraintTop_toTopOf="@id/m_pbAtk" />
+
+    <TextView
+        android:id="@+id/attackLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/attack"
+        app:layout_constraintEnd_toEndOf="@id/defenseLabel"
+        app:layout_constraintTop_toBottomOf="@id/labelHp" />
+
+    <ProgressBar
+        android:id="@+id/m_pbAtk"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:max="@integer/max_base_stat"
+        android:progressTint="@color/gold"
+        app:layout_constraintBottom_toBottomOf="@id/attackLabel"
+        app:layout_constraintEnd_toEndOf="@id/m_pbHp"
+        app:layout_constraintStart_toEndOf="@id/attackLabel"
+        app:layout_constraintTop_toTopOf="@id/attackLabel" />
+
+    <LinearLayout
+        android:id="@+id/m_layoutHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/m_tvTime"
+            style="@style/PokemonLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time_remaining" />
+
+        <TextView
+            android:id="@+id/m_tvGenerations"
+            style="@style/PokemonLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/generations" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/m_ivPokemon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/m_layoutHeader"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/nameLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="@id/m_etName"
+        app:layout_constraintEnd_toEndOf="@id/colorLabel"
+        app:layout_constraintTop_toBottomOf="@id/m_layoutHeader" />
+
+    <TextView
+        android:id="@+id/colorLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/color"
+        app:layout_constraintStart_toEndOf="@id/m_ivPokemon"
+        app:layout_constraintTop_toBottomOf="@id/nameLabel" />
+
+    <TextView
+        android:id="@+id/typeLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/type"
+        app:layout_constraintEnd_toEndOf="@id/colorLabel"
+        app:layout_constraintTop_toBottomOf="@id/colorLabel" />
+
+    <TextView
+        android:id="@+id/m_tvColor"
+        style="@style/DataLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="@id/m_pbHp"
+        app:layout_constraintStart_toEndOf="@id/colorLabel"
+        app:layout_constraintTop_toTopOf="@id/colorLabel" />
+
+    <TextView
+        android:id="@+id/m_tvType1"
+        style="@style/DataLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/typeLabel"
+        app:layout_constraintTop_toTopOf="@id/typeLabel" />
+
+    <TextView
+        android:id="@+id/m_tvType2"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/m_tvType1"
+        app:layout_constraintTop_toTopOf="@id/typeLabel" />
+
+    <TextView
+        android:id="@+id/familyMembersLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/family_members"
+        app:layout_constraintEnd_toEndOf="@id/evoNumLabel"
+        app:layout_constraintTop_toBottomOf="@id/typeLabel" />
+
+    <TextView
+        android:id="@+id/m_tvFamilyMembers"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/familyMembersLabel"
+        app:layout_constraintTop_toTopOf="@id/familyMembersLabel" />
+
+    <EditText
+        android:id="@+id/m_etName"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="8"
+        android:inputType="textCapWords"
+        android:textColorHighlight="@color/black"
+        android:textColorLink="@color/black"
+        android:textCursorDrawable="@color/black"
+        app:layout_constraintStart_toEndOf="@id/nameLabel"
+        app:layout_constraintTop_toBottomOf="@id/m_layoutHeader" />
+
+    <TextView
+        android:id="@+id/m_tvHeight"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/weightLabel"
+        app:layout_constraintTop_toTopOf="@id/heightLabel" />
+
+    <TextView
+        android:id="@+id/heightLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/height"
+        app:layout_constraintStart_toEndOf="@id/typeLabel"
+        app:layout_constraintTop_toTopOf="@id/familyMembersLabel" />
+
+    <TextView
+        android:id="@+id/labelHp"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hp"
+        app:layout_constraintEnd_toEndOf="@id/attackLabel"
+        app:layout_constraintTop_toTopOf="@id/guessesLabel" />
+
+    <ProgressBar
+        android:id="@+id/m_pbHp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="75dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:max="@integer/max_base_stat"
+        android:progressTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="@id/labelHp"
+        app:layout_constraintStart_toEndOf="@id/labelHp"
+        app:layout_constraintTop_toTopOf="@id/labelHp" />
+
+    <TextView
+        android:id="@+id/evoNumLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/evolution_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/familyMembersLabel" />
+
+    <TextView
+        android:id="@+id/m_tvEvoNum"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/m_tvFamilyMembers"
+        app:layout_constraintTop_toTopOf="@id/evoNumLabel" />
+
+    <TextView
+        android:id="@+id/m_tvHp"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/labelHp"
+        app:layout_constraintStart_toEndOf="@id/m_pbHp"
+        app:layout_constraintTop_toTopOf="@id/m_pbHp" />
+
+    <TextView
+        android:id="@+id/weightLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weight"
+        app:layout_constraintEnd_toEndOf="@id/heightLabel"
+        app:layout_constraintTop_toTopOf="@id/evoNumLabel" />
+
+    <TextView
+        android:id="@+id/m_tvWeight"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/weightLabel"
+        app:layout_constraintStart_toStartOf="@id/m_tvHeight" />
+
+    <TextView
+        android:id="@+id/guessesLabel"
+        style="@style/DataLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/guesses"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/evoNumLabel" />
+
+    <ListView
+        android:id="@+id/m_lvGuesses"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/speedLabel"
+        app:layout_constraintEnd_toStartOf="@id/defenseLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guessesLabel"
+        android:transcriptMode="alwaysScroll"
+        tools:context=".listview">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/m_tvName"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/nameLabel"
+        app:layout_constraintTop_toTopOf="@id/nameLabel" />
+
+    <TextView
+        android:id="@+id/numberLabel"
+        style="@style/PokemonLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/number_abbr"
+        app:layout_constraintBottom_toBottomOf="@id/colorLabel"
+        app:layout_constraintStart_toEndOf="@id/m_tvColor"
+        app:layout_constraintTop_toTopOf="@id/colorLabel" />
+
+    <TextView
+        android:id="@+id/m_tvNumber"
+        style="@style/DataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/numberLabel"
+        app:layout_constraintStart_toEndOf="@id/numberLabel"
+        app:layout_constraintTop_toTopOf="@id/numberLabel" />
+
+    <Button
+        android:id="@+id/m_btnPlayAgain"
+        style="@style/MenuButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="@dimen/bottom_margin"
+        android:layout_marginEnd="32dp"
+        android:onClick="onPlayGameSameSettingsClickHandler"
+        android:text="@string/play_again"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/m_lvGuesses" />
+
+    <Button
+        android:id="@+id/m_btnPlayAgainDS"
+        style="@style/MenuButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="onPlayGameDifferentSettingsClickHandler"
+        android:text="@string/play_again_different_settings"
+        app:layout_constraintEnd_toEndOf="@id/m_btnPlayAgain"
+        app:layout_constraintStart_toStartOf="@id/m_btnPlayAgain"
+        app:layout_constraintTop_toBottomOf="@id/m_btnPlayAgain" />
+
+    <Button
+        android:id="@+id/m_btnReturnHome"
+        style="@style/MenuButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="onReturnHomeClickHandler"
+        android:text="@string/return_home"
+        app:layout_constraintEnd_toEndOf="@id/m_btnPlayAgain"
+        app:layout_constraintStart_toStartOf="@id/m_btnPlayAgain"
+        app:layout_constraintTop_toBottomOf="@id/m_btnPlayAgainDS" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

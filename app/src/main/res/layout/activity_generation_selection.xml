@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GenerationSelection">
+
+    <ScrollView
+        android:id="@+id/m_svGenSelect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/m_btnGen1"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onGenerationSelectClickHandler"
+                android:text="@string/generation_1" />
+
+            <Button
+                android:id="@+id/m_btnGen2"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onGenerationSelectClickHandler"
+                android:text="@string/generation_2" />
+
+            <Button
+                android:id="@+id/m_btnGen3"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onGenerationSelectClickHandler"
+                android:text="@string/generation_3" />
+
+            <Button
+                android:id="@+id/m_btnGen4"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onGenerationSelectClickHandler"
+                android:text="@string/generation_4" />
+
+            <Button
+                android:id="@+id/m_btnGen5"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onGenerationSelectClickHandler"
+                android:text="@string/generation_5" />
+
+            <Button
+                android:id="@+id/m_btnGen6"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onGenerationSelectClickHandler"
+                android:text="@string/generation_6" />
+
+            <Button
+                android:id="@+id/m_btnGen7"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onGenerationSelectClickHandler"
+                android:text="@string/generation_7" />
+
+            <Button
+                android:id="@+id/m_btnGen8"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="onGenerationSelectClickHandler"
+                android:text="@string/generation_8" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/m_btnContinue"
+        style="@style/ContinueButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:onClick="onContinueButtonClickHandler"
+        android:text="@string/continu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/m_svGenSelect"
+        app:layout_constraintStart_toEndOf="@id/m_btnBack"
+        app:layout_constraintTop_toBottomOf="@id/m_svGenSelect" />
+
+    <Button
+        android:id="@+id/m_btnBack"
+        style="@style/ContinueButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:onClick="onBackButtonClickHandler"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="@id/m_btnContinue"
+        app:layout_constraintEnd_toStartOf="@id/m_btnContinue"
+        app:layout_constraintStart_toStartOf="@id/m_svGenSelect"
+        app:layout_constraintTop_toTopOf="@id/m_btnContinue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
