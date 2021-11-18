@@ -45,6 +45,7 @@ public class PokemonSearch extends AppCompatActivity {
             String text = String.valueOf(((TextView)view).getText());
             int number = Integer.parseInt(text.split(" - ")[1]);
             Pokemon p = pokeUtil.getPokemonBasedOnNumber(number);
+            Util.getInstance().error(p.toString());
             Intent intent = new Intent(getApplicationContext(), PokemonLookup.class);
             intent.putExtra(getString(R.string.arg_pokemon), p);
             startActivity(intent);

@@ -4,11 +4,16 @@ import android.content.ContentValues;
 import android.util.Log;
 
 import com.tomcat.mobile.whosthatpokemon.DataTables.PokemonData;
+import com.tomcat.mobile.whosthatpokemon.Utility.TypeUtil;
+import com.tomcat.mobile.whosthatpokemon.Utility.Util;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pokemon implements Serializable {
     private String name = "";
@@ -25,7 +30,8 @@ public class Pokemon implements Serializable {
     private int speed = 0;
     private int evoNum = 0;
     private int familyId = 0;
-    private boolean isRegionalVariant = false;
+
+    private String types;
 
     public Pokemon() {
 
@@ -33,6 +39,9 @@ public class Pokemon implements Serializable {
 
     public Pokemon(JSONObject jsonObject) {
         try {
+            TypeUtil tu = new TypeUtil();
+
+            Util.getInstance().error(jsonObject.toString());
             name = jsonObject.getString(PokemonData.COLUMN_NAME);
             generation = jsonObject.getInt(PokemonData.COLUMN_GENERATION);
             color = jsonObject.getString(PokemonData.COLUMN_COLOR);
@@ -47,7 +56,19 @@ public class Pokemon implements Serializable {
             speed = jsonObject.getInt(PokemonData.COLUMN_SPEED);
             evoNum = jsonObject.getInt(PokemonData.COLUMN_EVO_NUM);
             familyId = jsonObject.getInt(PokemonData.COLUMN_FAMILY_ID);
-            isRegionalVariant = jsonObject.getBoolean(PokemonData.COLUMN_IS_REGIONAL_VARIANT);
+
+            JSONArray typeData = jsonObject.getJSONArray(PokemonData.COLUMN_TYPES);
+            List<Type> types = new ArrayList<>();
+
+            for(int i = 0; i < typeData.length(); i++) {
+                JSONObject obj = typeData.getJSONObject(i);
+                Type t = new Type();
+                t.setId(obj.getInt(PokemonData.POKEMON_TYPE_ID));
+                t.setType(obj.getString(PokemonData.POKEMON_TYPE_NAME));
+                types.add(t);
+            }
+
+            this.types = tu.getMultiTypeString(types);
         } catch (JSONException jsone) {
             Log.e("ERROR", jsone.getMessage());
         }
@@ -95,8 +116,8 @@ public class Pokemon implements Serializable {
     public int getFamilyId() {
         return familyId;
     }
-    public boolean getIsRegionalVariant() {
-        return isRegionalVariant;
+    public String getTypes() {
+        return types;
     }
 
     public void setName(String n) {
@@ -115,7 +136,7 @@ public class Pokemon implements Serializable {
     public void setWeight(double d) {
         weight = d;
     }
-    public void setHp(int i ) {
+    public void setHp(int i) {
         hp = i;
     }
     public void setAttack(int i) {
@@ -139,8 +160,8 @@ public class Pokemon implements Serializable {
     public void setFamilyId(int i) {
         familyId = i;
     }
-    public void setIsRegionalVariant(int b) {
-        isRegionalVariant = b != 0;
+    public void setTypes(String types) {
+        this.types = types;
     }
 
     public String toString() {
@@ -157,13 +178,14 @@ public class Pokemon implements Serializable {
         str += ", SpAtk: " + getSpAtk();
         str += ", SpDef: " + getSpDef();
         str += ", Speed: " + getSpeed();
-        str += ", Regional Variant: " + getIsRegionalVariant();
+        str += ", Types: " + getTypes();
 
         return str;
     }
 
     public ContentValues getContentValuesForPokemon() {
         ContentValues cv = new ContentValues();
+        TypeUtil tv = new TypeUtil();
 
         cv.put(PokemonData.COLUMN_NUMBER, number);
         cv.put(PokemonData.COLUMN_NAME, name);
@@ -179,7 +201,7 @@ public class Pokemon implements Serializable {
         cv.put(PokemonData.COLUMN_EVO_NUM, evoNum);
         cv.put(PokemonData.COLUMN_FAMILY_ID, familyId);
         cv.put(PokemonData.COLUMN_COLOR, color);
-        cv.put(PokemonData.COLUMN_IS_REGIONAL_VARIANT, isRegionalVariant);
+        cv.put(PokemonData.COLUMN_TYPES, types);
 
         return cv;
     }

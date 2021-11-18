@@ -15,7 +15,7 @@ public class Globals {
     public final int NUMBER_OF_GENERATIONS = 8;
     public final int GENERATION_NULL = -1;
 
-    public final Pattern REGEX_NUMBER = Pattern.compile("^\\d+$");
+    public final Pattern REGEX_NUMBER = Pattern.compile("^(\\d*)(.{0,1})(\\d+)$");
 
     private Globals() {
 

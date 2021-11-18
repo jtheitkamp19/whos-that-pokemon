@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.tomcat.mobile.whosthatpokemon.R;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class Util {
     private static Util util = null;
@@ -154,7 +155,9 @@ public class Util {
 
     public boolean isString(Object obj) {
         try {
-            return obj != null && !obj.toString().trim().isEmpty();
+            boolean isValid = obj != null;
+            isValid = isValid && obj.toString().trim().length() >= 0;
+            return isValid;
         } catch (Exception e) {
             error("Object is not a string");
             return false;

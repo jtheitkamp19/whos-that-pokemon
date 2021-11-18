@@ -6,12 +6,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.tomcat.mobile.whosthatpokemon.DataTables.PokemonData;
-import com.tomcat.mobile.whosthatpokemon.DataTables.PokemonFamiliesData;
 import com.tomcat.mobile.whosthatpokemon.Modules.Pokemon;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 
 public class PokemonUtil {
     private DataAccessHelper dataHelper;
@@ -113,13 +110,11 @@ public class PokemonUtil {
         return pokemon;
     }
 
-    public Pokemon[] getPokemonFamilyMembersForPokemon(int number) {
+    public Pokemon[] getPokemonFamilyMembersForPokemon(int familyId) {
         Pokemon[] pokemons;
         open();
         String getPokemonFamilyStatement = "SELECT * FROM " + PokemonData.TABLE_NAME + " WHERE " +
-                PokemonData.COLUMN_FAMILY_ID + " in (SELECT " + PokemonFamiliesData.COLUMN_FAMILY_ID + " FROM " +
-                PokemonFamiliesData.TABLE_NAME + " WHERE " + PokemonFamiliesData.COLUMN_NUMBER + " = " +
-                Util.getInstance().wrap(number) + ")";
+                PokemonData.COLUMN_FAMILY_ID + " = " + Util.getInstance().wrap(familyId);
         Util.getInstance().log(getPokemonFamilyStatement);
 
         try {
@@ -168,13 +163,11 @@ public class PokemonUtil {
         return pokemons;
     }
 
-    public int getFamilyMemberCountForPokemon(int number) {
+    public int getFamilyMemberCountForPokemon(int familyId) {
         int memberCount = 0;
         open();
-        String getCountStatement = "SELECT COUNT(*) FROM " + PokemonFamiliesData.TABLE_NAME + " WHERE " +
-                PokemonFamiliesData.COLUMN_FAMILY_ID + " = (SELECT " + PokemonFamiliesData.COLUMN_FAMILY_ID +
-                " FROM " + PokemonFamiliesData.TABLE_NAME + " WHERE " + PokemonFamiliesData.COLUMN_NUMBER + " = " +
-                Util.getInstance().wrap(number) + ")";
+        String getCountStatement = "SELECT COUNT(*) FROM " + PokemonData.TABLE_NAME + " WHERE " +
+                PokemonData.COLUMN_FAMILY_ID + " = " + Util.getInstance().wrap(familyId);
 
         Util.getInstance().log(getCountStatement);
         try {
@@ -222,28 +215,50 @@ public class PokemonUtil {
         pokemon.setFamilyId(cursor.getInt(11));
         pokemon.setEvoNum(cursor.getInt(12));
         pokemon.setColor(cursor.getString(13));
-        pokemon.setIsRegionalVariant(cursor.getInt(14));
+        pokemon.setTypes(cursor.getString(14));
 
         return pokemon;
+    }
+
+    private void validationHelper(boolean isValid, String property) {
+        if (!isValid) {
+            Util.getInstance().warn(property + " is invalid");
+        }
     }
 
     public boolean isPokemonValid(Pokemon pokemon) {
         boolean isValid = true;
 
         isValid = isValid && Util.getInstance().isNumber(pokemon.getNumber());
+        validationHelper(isValid, "Number");
         isValid = isValid && Util.getInstance().isString(pokemon.getName());
+        validationHelper(isValid, "Name");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getGeneration());
+        validationHelper(isValid, "Generation");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getHeight());
+        validationHelper(isValid, "Height");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getWeight());
+        validationHelper(isValid, "Weight");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getHp());
+        validationHelper(isValid, "Hp");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getAttack());
+        validationHelper(isValid, "Attack");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getDefense());
+        validationHelper(isValid, "Defense");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getSpAtk());
+        validationHelper(isValid, "Special Attack");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getSpDef());
+        validationHelper(isValid, "Special Defense");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getSpeed());
+        validationHelper(isValid, "Speed");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getFamilyId());
+        validationHelper(isValid, "Family Id");
         isValid = isValid && Util.getInstance().isNumber(pokemon.getEvoNum());
+        validationHelper(isValid, "Evolution Number");
         isValid = isValid && Util.getInstance().isString(pokemon.getColor());
+        validationHelper(isValid, "Color");
+        isValid = isValid && Util.getInstance().isString(pokemon.getTypes());
+        validationHelper(isValid, "Types");
 
         return isValid;
     }

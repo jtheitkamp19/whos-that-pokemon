@@ -7,16 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tomcat.mobile.whosthatpokemon.Modules.Pokemon;
-import com.tomcat.mobile.whosthatpokemon.Modules.PokemonTypes;
-import com.tomcat.mobile.whosthatpokemon.Utility.PokemonTypesUtil;
+import com.tomcat.mobile.whosthatpokemon.Modules.Type;
 import com.tomcat.mobile.whosthatpokemon.Utility.PokemonUtil;
+import com.tomcat.mobile.whosthatpokemon.Utility.TypeUtil;
 import com.tomcat.mobile.whosthatpokemon.Utility.Util;
 
 import java.util.ArrayList;
@@ -30,6 +29,7 @@ public class PokemonLookup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Util.getInstance().error("pokemon lookup loaded");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon_lookup);
         familyView = (ListView)findViewById(R.id.m_lvGuesses);
@@ -41,18 +41,17 @@ public class PokemonLookup extends AppCompatActivity {
     }
 
     private void displayPokemonData(Pokemon pokemon) {
-        PokemonTypesUtil pokemonTypesUtil = new PokemonTypesUtil();
         PokemonUtil pokeUtil = new PokemonUtil();
-        PokemonTypes[] types = pokemonTypesUtil.getPokemonTypes(pokemon.getNumber());
+        TypeUtil typeUtil = new TypeUtil();
 
-        if (pokeUtil.isPokemonValid(pokemon) && types.length >= 1) {
+        if (pokeUtil.isPokemonValid(pokemon)) {
             ((TextView)findViewById(R.id.m_tvName)).setText(Util.getInstance().capitalizeFirstLetter(pokemon.getName()));
             ((TextView)findViewById(R.id.m_tvNumber)).setText("" + pokemon.getNumber());
             ((TextView)findViewById(R.id.m_tvColor)).setText(Util.getInstance().capitalizeFirstLetter(pokemon.getColor()));
             ((TextView)findViewById(R.id.m_tvHeight)).setText("" + pokemon.getHeight() + "\"");
             ((TextView)findViewById(R.id.m_tvWeight)).setText("" + pokemon.getWeight() + " kg");
             ((TextView)findViewById(R.id.m_tvEvoNum)).setText("" + pokemon.getEvoNum());
-            ((TextView)findViewById(R.id.m_tvFamilyMembers)).setText("" + pokeUtil.getFamilyMemberCountForPokemon(pokemon.getNumber()));
+            ((TextView)findViewById(R.id.m_tvFamilyMembers)).setText("" + pokeUtil.getFamilyMemberCountForPokemon(pokemon.getFamilyId()));
             ((TextView)findViewById(R.id.m_tvHp)).setText("" + pokemon.getHp());
             ((ProgressBar)findViewById(R.id.m_pbHp)).setProgress(pokemon.getHp());
             ((TextView)findViewById(R.id.m_tvAtk)).setText("" + pokemon.getAttack());
@@ -66,12 +65,17 @@ public class PokemonLookup extends AppCompatActivity {
             ((TextView)findViewById(R.id.m_tvSpeed)).setText("" + pokemon.getSpeed());
             ((ProgressBar)findViewById(R.id.m_pbSpeed)).setProgress(pokemon.getSpeed());
 
-            if (types.length == 1) {
-                ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter(types[0].getType()));
+            List<Type> types = typeUtil.getTypesFromString(pokemon.getTypes());
+
+            if (types.size() == 0) {
+                ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter("Type data not found"));
+                ((TextView)findViewById(R.id.m_tvType2)).setVisibility(View.INVISIBLE);
+            } else if (types.size() == 1) {
+                ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter(types.get(0).getType()));
                 ((TextView)findViewById(R.id.m_tvType2)).setVisibility(View.INVISIBLE);
             } else {
-                ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter(types[0].getType()));
-                ((TextView)findViewById(R.id.m_tvType2)).setText(Util.getInstance().capitalizeFirstLetter(types[1].getType()));
+                ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter(types.get(0).getType()));
+                ((TextView)findViewById(R.id.m_tvType2)).setText(Util.getInstance().capitalizeFirstLetter(types.get(1).getType()));
             }
 
             int imageId = Util.getInstance().getResourceIdFromName(pokemon.getName(), R.drawable.class);
@@ -81,7 +85,7 @@ public class PokemonLookup extends AppCompatActivity {
                 Util.getInstance().error("Image could not be found for " + pokemon.getName());
             }
 
-            Pokemon[] pokemons = pokeUtil.getPokemonFamilyMembersForPokemon(pokemon.getNumber());
+            Pokemon[] pokemons = pokeUtil.getPokemonFamilyMembersForPokemon(pokemon.getFamilyId());
             for (int i = 0; i < pokemons.length; i++) {
                 familyArray.add(Util.getInstance().capitalizeFirstLetter(pokemons[i].getName()) + " - " + pokemons[i].getNumber());
             }

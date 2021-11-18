@@ -21,16 +21,13 @@ import android.widget.TextView;
 
 import com.tomcat.mobile.whosthatpokemon.DataTables.StatData;
 import com.tomcat.mobile.whosthatpokemon.Modules.Pokemon;
-import com.tomcat.mobile.whosthatpokemon.Modules.PokemonTypes;
+import com.tomcat.mobile.whosthatpokemon.Modules.Type;
 import com.tomcat.mobile.whosthatpokemon.Utility.Globals;
-import com.tomcat.mobile.whosthatpokemon.Utility.PokemonTypesUtil;
 import com.tomcat.mobile.whosthatpokemon.Utility.PokemonUtil;
 import com.tomcat.mobile.whosthatpokemon.Utility.StatUtil;
+import com.tomcat.mobile.whosthatpokemon.Utility.TypeUtil;
 import com.tomcat.mobile.whosthatpokemon.Utility.Util;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -51,7 +48,6 @@ public class GameActivity extends AppCompatActivity {
     ArrayAdapter arrayAdapter;
     Timer timer;
     Pokemon pokemon;
-    PokemonTypes[] types;
     int[] eligibleGenerations;
     int difficulty;
 
@@ -59,14 +55,12 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        PokemonTypesUtil pokemonTypesUtil = new PokemonTypesUtil();
         pokeView = findViewById(R.id.m_ivPokemon);
         pokeView.setImageResource(R.drawable.ultraball);
         guessesView = findViewById(R.id.m_lvGuesses);
         ((TextView)findViewById(R.id.m_tvTime)).setText(getString(R.string.time_remaining) + " 05:00");
         m_etName = (EditText)findViewById(R.id.m_etName);
         pokemon = (Pokemon)getIntent().getSerializableExtra(getString(R.string.arg_pokemon));
-        types = pokemonTypesUtil.getPokemonTypes(pokemon.getNumber());
 
         difficulty = getIntent().getIntExtra(getString(R.string.arg_difficulty), Globals.getInstance().DIFFICULTY_BRUTAL);
         TextView generationsTextView = findViewById(R.id.m_tvGenerations);
@@ -159,9 +153,10 @@ public class GameActivity extends AppCompatActivity {
         guessesView.removeOnLayoutChangeListener(layoutChangeListener);
         saveStatsToDatabase(wongame);
 
-        PokemonTypesUtil pokemonTypesUtil = new PokemonTypesUtil();
         PokemonUtil pokeUtil = new PokemonUtil();
-        PokemonTypes[] types = pokemonTypesUtil.getPokemonTypes(pokemon.getNumber());
+        TypeUtil typeUtil = new TypeUtil();
+        List<Type> types = typeUtil.getTypesFromString(pokemon.getTypes());
+
         ((TextView)findViewById(R.id.m_tvNumber)).setText("" + pokemon.getNumber());
         ((TextView)findViewById(R.id.m_tvColor)).setText(Util.getInstance().capitalizeFirstLetter(pokemon.getColor()));
         ((TextView)findViewById(R.id.m_tvHeight)).setText("" + pokemon.getHeight() + "\"");
@@ -181,12 +176,12 @@ public class GameActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.m_tvSpeed)).setText("" + pokemon.getSpeed());
         ((ProgressBar)findViewById(R.id.m_pbSpeed)).setProgress(pokemon.getSpeed());
 
-        if (types.length == 1) {
-            ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter(types[0].getType()));
+        if (types.size() == 1) {
+            ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter(types.get(0).getType()));
             ((TextView)findViewById(R.id.m_tvType2)).setVisibility(View.INVISIBLE);
         } else {
-            ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter(types[0].getType()));
-            ((TextView)findViewById(R.id.m_tvType2)).setText(Util.getInstance().capitalizeFirstLetter(types[1].getType()));
+            ((TextView)findViewById(R.id.m_tvType1)).setText(Util.getInstance().capitalizeFirstLetter(types.get(0).getType()));
+            ((TextView)findViewById(R.id.m_tvType2)).setText(Util.getInstance().capitalizeFirstLetter(types.get(1).getType()));
         }
 
         int imageId = Util.getInstance().getResourceIdFromName(pokemon.getName(), R.drawable.class);
@@ -264,24 +259,34 @@ public class GameActivity extends AppCompatActivity {
         return false;
     }
 
-    private void findEquivalenciesWithCurrentPokemon(Pokemon p, PokemonTypes[] t) {
+    private void findEquivalenciesWithCurrentPokemon(Pokemon p) {
         PokemonUtil pokeUtil = new PokemonUtil();
+        TypeUtil typeUtil = new TypeUtil();
         guesses++;
         validGuesses = (isGuessValid(p.getGeneration())) ? validGuesses + 1 : validGuesses;
         guessesArray.add(Util.getInstance().capitalizeFirstLetter(p.getName()));
         arrayAdapter.notifyDataSetChanged();
+        List<Type> currentTypes = typeUtil.getTypesFromString(pokemon.getTypes());
+        List<Type> newTypes = typeUtil.getTypesFromString(p.getTypes());
 
         if (p.getName().toLowerCase().equals(pokemon.getName().toLowerCase())) {
             winGame();
         } else {
-            for (int i = 0; i < types.length; i++) {
-                TextView[] type = {(TextView)findViewById(R.id.m_tvType1), (TextView)findViewById(R.id.m_tvType2)};
-                for (int x = 0; x < t.length; x++) {
-                    if (types[i].getType().equals(t[x].getType())) {
-                        type[i].setText(Util.getInstance().capitalizeFirstLetter(types[i].getType()));
+            if (currentTypes.size() != 0) {
+                for (int i = 0; i < newTypes.size(); i++) {
+                    TextView[] type = {(TextView)findViewById(R.id.m_tvType1), (TextView)findViewById(R.id.m_tvType2)};
+                    for (int x = 0; x < newTypes.size(); x++) {
+                        if (currentTypes.get(i).getType().equals(newTypes.get(x).getType())) {
+                            type[i].setText(Util.getInstance().capitalizeFirstLetter(currentTypes.get(i).getType()));
+                        }
                     }
                 }
+            } else {
+                TextView[] type = {(TextView)findViewById(R.id.m_tvType1), (TextView)findViewById(R.id.m_tvType2)};
+                type[0].setText("Type data not found");
+                type[1].setVisibility(View.INVISIBLE);
             }
+
 
             if (Math.abs(p.getHeight() - pokemon.getHeight()) < HEIGHT_DIFFERENTIAL_MAXIMUM) {
                 ((TextView)findViewById(R.id.m_tvHeight)).setText("" + pokemon.getHeight() + "\"");
@@ -299,8 +304,8 @@ public class GameActivity extends AppCompatActivity {
                 ((TextView)findViewById(R.id.m_tvEvoNum)).setText("" + pokemon.getEvoNum());
             }
 
-            if (pokeUtil.getFamilyMemberCountForPokemon(p.getNumber()) == pokeUtil.getFamilyMemberCountForPokemon(pokemon.getNumber())) {
-                ((TextView)findViewById(R.id.m_tvFamilyMembers)).setText("" + pokeUtil.getFamilyMemberCountForPokemon(p.getNumber()));
+            if (pokeUtil.getFamilyMemberCountForPokemon(p.getFamilyId()) == pokeUtil.getFamilyMemberCountForPokemon(pokemon.getFamilyId())) {
+                ((TextView)findViewById(R.id.m_tvFamilyMembers)).setText("" + pokeUtil.getFamilyMemberCountForPokemon(p.getFamilyId()));
             }
 
             if (p.getHp() == pokemon.getHp()) {
@@ -372,10 +377,8 @@ public class GameActivity extends AppCompatActivity {
             guess = Util.getInstance().formatStringForDatabase(guess);
             boolean hasPokemonBeenGuessed = false;
             ArrayList<Pokemon> pokemons = new ArrayList<>();
-            PokemonTypes[] types;
 
             PokemonUtil pokemonUtil = new PokemonUtil();
-            PokemonTypesUtil pokemonTypesUtil = new PokemonTypesUtil();
 
             for (int v = 0; v < guessesView.getChildCount(); v++) {
                 if (String.valueOf(((TextView)guessesView.getChildAt(v)).getText()).toLowerCase().equals(guess.toLowerCase())) {
@@ -388,8 +391,7 @@ public class GameActivity extends AppCompatActivity {
 
                 if (pokemons.size() >= 1) {
                     for (int p = 0; p < pokemons.size(); p++) {
-                        types = pokemonTypesUtil.getPokemonTypes(pokemons.get(p).getNumber());
-                        findEquivalenciesWithCurrentPokemon(pokemons.get(p), types);
+                        findEquivalenciesWithCurrentPokemon(pokemons.get(p));
                     }
                     ((EditText)findViewById(R.id.m_etName)).setText("");
                 }
